@@ -9,42 +9,6 @@ class MedicalClinicSystem:
         return self._patients
     
     def init_system(self):
-        while True:
-            print("\n--- SOAP Medical Clinic System ---")
-            print("Enter a number to proceed")
-            print("[1] Add New Patient and SOAP Note")
-            print("[2] Update Existing Patient Info")
-            print("[3] Update Existing SOAP Note")
-            print("[4] View Patient SOAP Note")
-            print("[5] Exit")
-            choice = input("Select an option: ")
-
-            match choice:
-                case '1':
-                    add_patient_and_note()
-                case '2':
-                    if len(self.patients) == 0:
-                        print("No patient is added yet.")
-                    else:
-                        update_patient_info()
-                case '3':
-                    if len(self.patients) == 0:
-                        print("No patient is added yet.")
-                    else:
-                        update_note()
-                case '4':
-                    if len(self.patients) == 0:
-                        print("No patient is added yet.")
-                    else:
-                        view_patient_note()
-                case '5':
-                    print("Exiting the system.")
-
-                    # stop loop
-                    break
-                case _:
-                    print("Invalid choice. Please try again.")
-        
         def display_patients():
             print("----- List of Patient/s -----")
             for patient in self.patients.values():
@@ -227,3 +191,39 @@ class MedicalClinicSystem:
                     break
                 except ValueError:
                     print("Enter only number.")
+
+        while True:
+            print("\n--- SOAP Medical Clinic System ---")
+            print("Enter a number to proceed")
+            print("[1] Add New Patient and SOAP Note")
+            print("[2] Update Existing Patient Info")
+            print("[3] Update Existing SOAP Note")
+            print("[4] View Patient SOAP Note")
+            print("[5] Exit")
+            choice = input("Select an option: ")
+
+            match choice:
+                case '1':
+                    add_patient_and_note()
+                case '2':
+                    if len(self.patients) == 0:
+                        print("No patient is added yet.")
+                    else:
+                        update_patient_info()
+                case '3':
+                    if len(self.patients) == 0:
+                        print("No patient is added yet.")
+                    else:
+                        update_note()
+                case '4':
+                    if len(self.patients) == 0:
+                        print("No patient is added yet.")
+                    else:
+                        view_patient_note()
+                case '5':
+                    print("Exiting the system.")
+
+                    # stop loop
+                    break
+                case _:
+                    print("Invalid choice. Please try again.")
