@@ -1,8 +1,32 @@
 class Objective:
     def __init__(self):
-        self.vital_signs = {}
-        self.lab_results = {}
-        self.physical_exam = ""
+        self._vital_signs = {}
+        self._lab_results = {}
+        self._physical_exam = ""
+
+    @property
+    def vital_signs(self):
+        return self._vital_signs
+    
+    @property
+    def lab_results(self):
+        return self._lab_results
+    
+    @property
+    def physical_exam(self):
+        return self._physical_exam
+    
+    @vital_signs.setter
+    def vital_signs(self, new_vital_signs):
+        self._vital_signs = new_vital_signs
+    
+    @lab_results.setter
+    def lab_results(self, new_lab_results):
+        self._lab_results = new_lab_results
+    
+    @physical_exam.setter
+    def physical_exam(self, new_physical_exam):
+        self._physical_exam = new_physical_exam
 
     def input_data(self):
         """
@@ -21,7 +45,7 @@ class Objective:
             except ValueError:
                 print("Enter only number.")
 
-        self.vital_signs = {'Blood Pressure': bp, 'Heart Rate': hr}
+        self.vital_signs.update({ 'Blood Pressure': bp, 'Heart Rate': hr })
 
         self.physical_exam = input("Enter physical exam notes: ")
 
@@ -33,7 +57,7 @@ class Objective:
             if add_lab in ['yes', 'y']:
                 lab_name = input("Enter lab test name (e.g., CBC): ")
                 lab_value = input(f"Enter result for {lab_name}: ")
-                lab_results[lab_name] = lab_value
+                lab_results.update({ lab_name: lab_value })
             elif add_lab in ['no', 'n']:
                 # stop loop
                 break

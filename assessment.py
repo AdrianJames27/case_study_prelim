@@ -1,8 +1,32 @@
 class Assessment:
     def __init__(self):
-        self.diagnosis = ""
-        self.differential_diagnoses = []
-        self.clinical_notes = ""
+        self._diagnosis = ""
+        self._differential_diagnoses = []
+        self._clinical_notes = ""
+
+    @property
+    def diagnosis(self):
+        return self._diagnosis
+    
+    @property
+    def differential_diagnoses(self):
+        return self._differential_diagnoses
+    
+    @property
+    def clinical_notes(self):
+        return self._clinical_notes
+    
+    @diagnosis.setter
+    def diagnosis(self, new_diagnosis):
+        self._diagnosis = new_diagnosis
+    
+    @differential_diagnoses.setter
+    def differential_diagnoses(self, new_differential_diagnoses):
+        self._differential_diagnoses = new_differential_diagnoses
+    
+    @clinical_notes.setter
+    def clinical_notes(self, clinical_notes):
+        self._clinical_notes = clinical_notes
 
     def analyze(self, subjective, objective):
         """
@@ -66,7 +90,7 @@ class Assessment:
             self.differential_diagnoses = possible_diagnoses[1:]  # Remaining as differentials.
         else:
             self.diagnosis = "Undetermined"
-            self.differential_diagnoses = []
+            self.differential_diagnoses.clear()
         
         # Provide additional clinical notes based on findings.
         if "Signs of inflammation" in self.differential_diagnoses:

@@ -1,8 +1,32 @@
 class Plan:
     def __init__(self):
-        self.treatment_plan = ""
-        self.follow_up = ""
-        self.additional_tests = ""
+        self._treatment_plan = ""
+        self._follow_up = ""
+        self._additional_tests = ""
+
+    @property
+    def treatment_plan(self):
+        return self._treatment_plan
+    
+    @property
+    def follow_up(self):
+        return self._follow_up
+    
+    @property
+    def additional_tests(self):
+        return self._additional_tests
+    
+    @treatment_plan.setter
+    def treatment_plan(self, new_treatment_plan):
+        self._treatment_plan = new_treatment_plan
+    
+    @follow_up.setter
+    def follow_up(self, new_follow_up):
+        self._follow_up = new_follow_up
+    
+    @additional_tests.setter
+    def additional_tests(self, new_additional_tests):
+        self._additional_tests = new_additional_tests
 
     def update_plan(self):
         """
