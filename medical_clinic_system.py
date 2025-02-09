@@ -2,8 +2,13 @@ from patient import Patient
 
 class MedicalClinicSystem:
     def __init__(self):
-        patients = {}
+        self._patients = {}
 
+    @property
+    def patients(self):
+        return self._patients
+    
+    def init_system(self):
         while True:
             print("\n--- SOAP Medical Clinic System ---")
             print("Enter a number to proceed")
@@ -18,17 +23,17 @@ class MedicalClinicSystem:
                 case '1':
                     add_patient_and_note()
                 case '2':
-                    if len(patients) == 0:
+                    if len(self.patients) == 0:
                         print("No patient is added yet.")
                     else:
                         update_patient_info()
                 case '3':
-                    if len(patients) == 0:
+                    if len(self.patients) == 0:
                         print("No patient is added yet.")
                     else:
                         update_note()
                 case '4':
-                    if len(patients) == 0:
+                    if len(self.patients) == 0:
                         print("No patient is added yet.")
                     else:
                         view_patient_note()
@@ -42,7 +47,7 @@ class MedicalClinicSystem:
         
         def display_patients():
             print("----- List of Patient/s -----")
-            for patient in patients.values():
+            for patient in self.patients.values():
                 print(f"ID : {patient.patient_id:0>5}, Name: {patient.name}")
             print("-----------------------------")
         
@@ -93,7 +98,7 @@ class MedicalClinicSystem:
             print("\nEnter Plan:")
             patient.soap_note.plan.update_plan()
 
-            patients.update({ patient.patient_id: patient })
+            self.patients.update({ patient.patient_id: patient })
 
             print("\nPatient SOAP Note created successfully.")
         
@@ -104,8 +109,8 @@ class MedicalClinicSystem:
 
                     pid = int(input("Enter Patient ID to update: "))
 
-                    if pid in patients:
-                        patient = patients[pid]
+                    if pid in self.patients:
+                        patient = self.patients[pid]
 
                         name = ''
                         age = 0
@@ -160,8 +165,8 @@ class MedicalClinicSystem:
 
                     pid = int(input("Enter Patient ID to update: "))
             
-                    if pid in patients:
-                        patient = patients[pid]
+                    if pid in self.patients:
+                        patient = self.patients[pid]
 
                         patient.soap_note.display_note()
 
@@ -210,8 +215,8 @@ class MedicalClinicSystem:
                 try:
                     pid = int(input("Enter Patient ID to view: "))
 
-                    if pid in patients:
-                        patient = patients[pid]
+                    if pid in self.patients:
+                        patient = self.patients[pid]
 
                         patient.display_info()
                         patient.soap_note.display_note()
