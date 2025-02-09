@@ -73,11 +73,11 @@ class Assessment:
         
         # Analyze lab results (if any).
         for lab, result in objective.lab_results.items():
-            if lab.lower() == "cbc" and "abnormal" in result.lower():
+            if lab == "CBC" and "abnormal" in result.lower():
                 possible_diagnoses.append("Possible hematologic disorder")
-            elif lab.lower() == "bmp" and "abnormal" in result.lower():
+            elif lab == "BMP" and "abnormal" in result.lower():
                 possible_diagnoses.append("Possible kidney dysfunction")
-            elif lab.lower() == "lft" and "abnormal" in result.lower():
+            elif lab == "LFT" and "abnormal" in result.lower():
                 possible_diagnoses.append("Possible liver disease")
         
         # Analyze physical exam notes.

@@ -57,7 +57,7 @@ class Objective:
             if add_lab in ['yes', 'y']:
                 lab_name = input("Enter lab test name (e.g., CBC): ")
                 lab_value = input(f"Enter result for {lab_name}: ")
-                lab_results.update({ lab_name: lab_value })
+                lab_results.update({ lab_name.upper(): lab_value })
             elif add_lab in ['no', 'n']:
                 # stop loop
                 break
