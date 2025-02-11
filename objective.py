@@ -35,6 +35,7 @@ class Objective:
 
         bp = input("Enter blood pressure (format: systolic/diastolic, e.g., 120/80): ")
         hr = 0
+        temp = 0
         
         while True:
             try:
@@ -45,7 +46,20 @@ class Objective:
             except ValueError:
                 print("Enter only number.")
 
-        self.vital_signs.update({ 'Blood Pressure': bp, 'Heart Rate': hr })
+        while True:
+            try:
+                temp = float(input("Enter your body temperature: "))
+
+                # stop loop
+                break
+            except ValueError:
+                print("Enter only number.")
+
+        self.vital_signs.update({ 
+            'Blood Pressure': bp, 
+            'Heart Rate': hr,
+            'Body Temperature': temp
+         })
 
         self.physical_exam = input("Enter physical exam notes: ")
 

@@ -28,6 +28,43 @@ class Plan:
     def additional_tests(self, new_additional_tests):
         self._additional_tests = new_additional_tests
 
+    def add_plan(self, assessment):
+        """
+        Generates a treatment plan, follow-up, and additional tests based on the diagnosis and clinical notes.
+        """
+        primary_diagnosis = assessment.diagnosis
+        differentials = assessment.differential_diagnoses
+        clinical_notes = assessment.clinical_notes
+
+        if "infection" in primary_diagnosis.lower():
+            self.treatment_plan = "Start antibiotics and monitor symptoms."
+        elif "cardiac" in primary_diagnosis.lower():
+            self.treatment_plan = "Refer to cardiology and start aspirin therapy if indicated."
+        elif "migraine" in primary_diagnosis.lower():
+            self.treatment_plan = "Prescribe pain relievers and recommend lifestyle changes."
+        elif "hypertensive" in primary_diagnosis.lower():
+            self.treatment_plan = "Initiate antihypertensive medication and lifestyle modification."
+        else:
+            self.treatment_plan = "Symptomatic treatment and further evaluation."
+        
+
+        if "undiagnosed" in primary_diagnosis.lower() or not differentials:
+            self.follow_up = "Schedule a follow-up in 1 week to reassess symptoms."
+        else:
+            self.follow_up = "Follow-up in 2-4 weeks based on response to treatment."
+        
+        if "Signs of inflammation" in differentials or "further imaging" in clinical_notes.lower():
+            self.additional_tests = "Order CBC, CRP, and imaging studies."
+        elif "cardiac" in primary_diagnosis.lower():
+            self.additional_tests = "Order ECG and cardiac enzyme tests."
+        elif "kidney" in differentials:
+            self.additional_tests = "Order renal function tests."
+        elif "fever" in primary_diagnosis.lower():
+            self.additional_tests = "Check WBC count, blood cultures, and inflammatory markers."
+        else:
+            self.additional_tests = "Consider additional lab tests based on clinical course."
+        
+
     def update_plan(self):
         """
         Update the treatment plan details.

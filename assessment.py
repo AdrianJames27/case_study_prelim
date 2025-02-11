@@ -64,12 +64,21 @@ class Assessment:
             except (ValueError, IndexError):
                 pass  # Skip parsing errors.
 
-        hr = objective.vital_signs.get("Heart Rate", "")
+        hr = objective.vital_signs.get("Heart Rate", 0)
         if hr:
             if hr < 60:
                 possible_diagnoses.append("Sick Sinus Syndrome")
             elif hr > 100:
                 possible_diagnoses.append("Atrial Fibrillation")
+        
+        temp = objective.vital_signs.get("Body Temperature", 0)
+        if temp:
+            try:
+                temp = float(temp)
+                if temp > 100.4:  # Fever threshold in Fahrenheit (or >38°C)
+                    possible_diagnoses.append("Fever")
+            except ValueError:
+                pass  # Skip parsing errors
         
         # Analyze lab results (if any).
         for lab, result in objective.lab_results.items():

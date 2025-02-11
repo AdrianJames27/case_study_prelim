@@ -55,6 +55,7 @@ class MedicalClinicSystem:
 
             print("\nEnter Objective Data:")
             patient.soap_note.objective.input_data()
+            patient.soap_note.plan.add_plan(patient.soap_note.assessment)
 
             print("\nAnalyzing data for Assessment...")
             patient.soap_note.assessment.analyze(patient.soap_note.subjective, patient.soap_note.objective)
